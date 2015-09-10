@@ -1,13 +1,13 @@
 <html>
-	<head>
-		<title>Chat</title>
+    <head>
+        <title>Chat</title>
         <style>
             input { display: block;}
             ul    { list-style: none;}
         </style>
-	</head>
-	<body>
-		<ul id="messages"></ul>
+    </head>
+    <body>
+        <ul id="messages"></ul>
         <form id="chatbox">
             <textarea></textarea>
             <input type="submit" value="Send" />
@@ -31,16 +31,17 @@
                 if (!window["WebSocket"]) {
                     alert("Error: Your browser does not support web sockets.");
                 } else {
-                    socket = new WebSocket("ws://localhost:8080/room");
+                    socket = new WebSocket("ws://{{.Host}}/room");
                     socket.onclose = function() {
                         alert("Connection has been closed.");
                     }
                     socket.onmessage = function(e) {
                         messages.append($("<li>").text(e.data));
+                        messages.append($("<li>").text("==========="));
                     }
                 }
             });
         </script>
-	</body>
+    </body>
 </html>
 
